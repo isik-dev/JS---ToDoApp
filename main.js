@@ -15,6 +15,12 @@ const todos = [{
     completed: true
 }]
 
+// 1. Setup a div contain for todos
+// 2. Setup filters (searchText) and wire up a new filter input to change it
+// 3. Create a renderTodos function to render and rerender the lates filtered data 
+
+
+// Starts
 const incompleteTasks = todos.filter(function (item, index) {
     return !item.completed
 })
@@ -28,11 +34,15 @@ todos.forEach(function (item) {
     p.textContent = item.text
     document.querySelector('body').appendChild(p)
 })
+// Ends
 
+// Listen for new tㄴodo creation
 document.querySelector('#create-todo').addEventListener('click', function(e) {
     console.log('I added a new button')
 })
 
+// Listen for todo text change
 document.querySelector('#filter-todo').addEventListener('input', function (e) {
     console.log(e.target.value)
 })
+
