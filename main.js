@@ -106,7 +106,7 @@ const todos = [{
 const filters = {
     searchText: ''
 }
-
+//look here
 const renderTodos = function (todos, filters) {
     const filteredTodos = todos.filter(function (item, index) {
         return item.text.toLowerCase().includes(filters.searchText.toLowerCase())
@@ -163,13 +163,16 @@ document.querySelector('#text-input').addEventListener('input', function (e) {
 //         return !item.completed
 //     })
 
+
 // const summary = document.createElement('h2')
 // summary.textContent = `You have ${incompleteTodos.length} todos left.`
 // document.querySelector('h1').appendChild(summary)
+
 
 // todos.forEach(function (item, index) {
 //     const p = document.createElement('p')
 //     p.textContent = item.text
 //     document.querySelector('body').appendChild(p)
 // })
+
 
