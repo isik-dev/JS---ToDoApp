@@ -1,87 +1,3 @@
-// const todos = [{
-//     text: 'Buy grocery',
-//     completed: true
-// }, {
-//     text: 'Do homework',
-//     completed: false
-// }, {
-//     text: 'Clean the room',
-//     completed: true
-// }, {
-//     text: 'Workout',
-//     completed: false
-// }, {
-//     text: 'Read KGB',
-//     completed: true
-// }]
-
-// const filters = {
-//     searchText: ''
-// }
-
-// const renderTodos = function (todos, filters) {
-//     const filteredTodos = todos.filter(function (todo) {
-//         return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
-//     })
-
-//     const incompleteTasks = filteredTodos.filter(function (item, index) {
-//         return !item.completed
-//     })
-
-//     document.querySelector('#todos').innerHTML = ''
-    
-//     const summary = document.createElement('h2')
-//     summary.textContent = `You have ${incompleteTasks.length} todos left`
-//     document.querySelector('#todos').appendChild(summary)
-    
-//     filteredTodos.forEach(function (item) {
-//         const p = document.createElement('p')
-//         p.textContent = item.text
-//         document.querySelector('#todos').appendChild(p)
-//     })
-
-// }
-
-// renderTodos(todos, filters)
-
-// // 1. Setup a div contain for todos
-// // 2. Setup filters (searchText) and wire up a new filter input to change it
-// // 3. Create a renderTodos function to render and rerender the lates filtered data 
-
-
-// // Starts
-// // const incompleteTasks = todos.filter(function (item, index) {
-// //     return !item.completed
-// // })
-
-// // const summary = document.createElement('h2')
-// // summary.textContent = `You have ${incompleteTasks.length} todos left`
-// // document.querySelector('body').appendChild(summary)
-
-// // todos.forEach(function (item) {
-// //     const p = document.createElement('p')
-// //     p.textContent = item.text
-// //     document.querySelector('body').appendChild(p)
-// // })
-// // Ends
-
-// // Listen for new todo creation
-// document.querySelector('#create-todo').addEventListener('click', function(e) {
-//     console.log('I added a new button')
-// })
-
-// // Listen for todo text change
-// document.querySelector('#filter-todo').addEventListener('input', function (e) {
-//     console.log(e.target.value)
-// })
-
-// document.querySelector('#search-text').addEventListener('input', function (e) {
-//     filters.searchText = e.target.value
-//     renderTodos(todos, filters)
-// })
-
-
-
 const todos = [{
     text: 'Buy grocery',
     completed: true
@@ -100,79 +16,49 @@ const todos = [{
 }]
 
 // 1. Setup a div contain for todos
-// 2. Setup filters (searchText) and wire up a new filter input to change it 
+// 2. Setup filters (searchText) and wire up new filter input to change it
 // 3. Create a renderTodos function to render and rerender the latest filtered data
 
 const filters = {
     searchText: ''
 }
-//look here
+
 const renderTodos = function (todos, filters) {
-    const filteredTodos = todos.filter(function (item, index) {
+    const filteredTodos = todos.filter(function (item) {
         return item.text.toLowerCase().includes(filters.searchText.toLowerCase())
     })
 
-    const incompleteTodos = filteredTodos.filter(function (item, index) {
+    // Creates a function that returns uncompleted array of items
+    const incompleteElements = filteredTodos.filter(function (item, index) {
         return !item.completed
     })
 
     document.querySelector('#todos').innerHTML = ''
 
-    const summary = document.createElement('h2')
-    summary.textContent = `You have ${incompleteTodos.length} todos left`
-    document.querySelector('#todos').appendChild(summary)
+    // Renders a statement on the html website
+    const element = document.createElement('h2')
+    element.textContent = `You have ${incompleteElements.length} todos left`
+    document.querySelector('#todos').appendChild(element)
 
+    // Loops through each item in the array and renders it in html website
     filteredTodos.forEach(function (item, index) {
-        const p = document.createElement('p')
-        p.textContent = item.text
-        document.querySelector('#todos').appendChild(p)
+        const newElement = document.createElement('p')
+        newElement.textContent = item.text
+        document.querySelector('#todos').appendChild(newElement)
     })
 }
 
+
 renderTodos(todos, filters)
 
-// Listen for new todo creation
+
+// Listens to the add-todo button click and prints a message in the console
 document.querySelector('#add-todo').addEventListener('click', function (e) {
-    console.log('did it work?')
+    console.log('the button was clicked')
 })
 
-// Listen for a text box input
-document.querySelector('#text-input').addEventListener('input', function (e) {
+// Listens to the text input in the input box and prints what's inputted.
+document.querySelector('#new-todo-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderTodos(todos, filters)
-
 })
-
-
-// const renderTodos = function (todos, filters) {
-//     const filteredTodos = todos.filter(function (item, index) {
-//         return item.text.toLowerCase().includes(filters.searchText.toLowerCase())
-//     })
-//     document.querySelector('#todos').innerHTML = ''
-
-//     filteredTodos.forEach(function (item, index) {
-//         const todoEl = document.createElement('p')
-//         todoEl.textContent = item.text
-//         document.querySelector('#todos').appendChild(todoEl)
-//     })
-// }
-
-// renderTodos(todos, filters)
-
-// const incompleteTodos = todos.filter(function (item, index) {
-//         return !item.completed
-//     })
-
-
-// const summary = document.createElement('h2')
-// summary.textContent = `You have ${incompleteTodos.length} todos left.`
-// document.querySelector('h1').appendChild(summary)
-
-
-// todos.forEach(function (item, index) {
-//     const p = document.createElement('p')
-//     p.textContent = item.text
-//     document.querySelector('body').appendChild(p)
-// })
-
-
