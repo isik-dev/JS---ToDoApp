@@ -1,11 +1,30 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 
 <html>
     <h1>Todos</h1>
     <input id="new-todo-text" type="text" placeholder="Search for a todo">
     <button id="add-todo">Add Todo</button>
+    <input id="filter-todos" type="text" placeholder="Search for incomplete todos">
     <div id="todos">
 
     </div>
     <script src="main.js"></script>
+</html> -->
+
+<!DOCTYPE html>
+
+<html>
+    <h1>Todos</h1>
+    <body>
+        <input type="text" id="search-todo" placeholder="Search Todo">
+        <label>
+            <input id="hide-checkbox" type="checkbox"> Hide Completed
+        </label>
+        <div id="todos"></div>
+        <form id="add-todo">
+            <input type="text" placeholder="Add todo" name="todoText">
+            <button>Submit</button>
+        </form>
+        <script src="main.js"></script>
+    </body>
 </html>
