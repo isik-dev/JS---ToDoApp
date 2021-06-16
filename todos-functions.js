@@ -1,3 +1,7 @@
+// 1. Add event handler to checkbox
+// 2. Modify the correct objects completed property-> toggleTodo
+// 3. Save and rerender
+
 // Fetch existing todos from localStorage
 // getSavedTodos
 const getSavedTodos = function () {
@@ -38,6 +42,28 @@ const renderTodos = function (todos, filters) {
     })   
 }
 
+// Create removeTODO function
+const removeTODO = function (id) {
+    const itemIndex = todos.findIndex(function (item) {
+        return item.id === id
+    })
+    if (itemIndex > -1) {
+        return todos.splice(itemIndex, 1)
+    }
+}
+
+// Toggle the completed value for a given todo
+const toggleTodo = function (id) {
+    const item = todos.find(function (item) {
+        return item.id === id
+    })
+
+    if (item !== undefined) {
+        item.completed = !item.completed
+    }
+}
+
+
 // Get the DOM elements for an individual note
 // generateTodoDOM
 const generateTodoDOM = function (item) {
@@ -50,7 +76,14 @@ const generateTodoDOM = function (item) {
 
     //Setup todo checkbox
     checkEl.setAttribute('type', 'checkbox')
+    checkEl.checked = item.completed
     element.appendChild(checkEl)
+    checkEl.addEventListener('change', function () {
+        toggleTodo(item.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
+
 
         //Setup the todo text
         if (item.text.length > 0) {
@@ -62,6 +95,13 @@ const generateTodoDOM = function (item) {
 
         // Setup the remove button
         element.appendChild(removeEl)
+        removeEl.addEventListener('click', function (e) {
+            removeTODO(item.id)
+            saveTodos(todos)
+            renderTodos(todos, filters)
+        })
+
+
         return element
 
 }
