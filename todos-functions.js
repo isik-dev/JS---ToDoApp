@@ -40,6 +40,26 @@ const renderTodos = function (todos, filters) {
 
 }
 
+// Remove todo by its UUID
+const removeTodo = function (id) {
+    const todoIndex = todos.findIndex(function (todo) {
+        return todo.id === id
+    })
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1)
+    }
+}
+
+// Toggle the completed value for a given todo by its UUID
+const toggleTodo = function (id) {
+    const todo = todos.find(function (todo) {
+        return todo.id === id
+    })
+    if (todo !== undefined) {
+        todo.completed = !todo.completed
+    }
+}
+
 // Get the DOM elements for an individual note
 const generateTodoDOM = function (todo) {
 
@@ -50,7 +70,14 @@ const generateTodoDOM = function (todo) {
 
     // Setup todo checkbox
     checkboxEl.setAttribute('type', 'checkbox')
+    checkboxEl.checked = todo.completed
     todoEl.appendChild(checkboxEl)
+    checkboxEl.addEventListener('change', function () {
+        toggleTodo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
+    
 
     // Setup the todo text
     textEL.textContent = todo.text
@@ -59,6 +86,11 @@ const generateTodoDOM = function (todo) {
     // Setup the remove button
     buttonEl.textContent = 'Remove'
     todoEl.appendChild(buttonEl)
+    buttonEl.addEventListener('click', function () {
+        removeTodo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
     
 
     return todoEl

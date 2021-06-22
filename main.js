@@ -13,6 +13,7 @@ renderTodos(todos, filters)
 document.querySelector('#add-form').addEventListener('submit', function (e) {
     e.preventDefault()
     todos.push({
+        id: uuidv4(),
         text: e.target.elements.addTodo.value,
         completed: filters.hideCompleted
     })
