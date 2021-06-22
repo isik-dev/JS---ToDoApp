@@ -5,28 +5,31 @@ const filters = {
     hideCompleted: false
 }
 
+
 renderTodos(todos, filters)
 
-document.querySelector('#search-todo').addEventListener('input', function (e) {
+
+// Listen for add todo button click
+document.querySelector('#add-form').addEventListener('submit', function (e) {
+    e.preventDefault()
+    todos.push({
+        id: uuidv4(),
+        text: e.target.elements.addTodo.value,
+        completed: filters.hideCompleted
+    })
+    saveTodos(todos)
+    renderTodos(todos, filters)
+    e.target.elements.addTodo.value = ''
+})
+
+//Listen for search todo text change
+document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderTodos(todos, filters)
 })
 
-
-document.querySelector('#add-todo').addEventListener('submit', function (e) {
-    e.preventDefault()
-    todos.push({
-        id: uuidv4(),
-        text: e.target.elements.todoText.value,
-        completed: false
-    })
-    saveTodos(todos)
-    renderTodos(todos, filters)
-    e.target.elements.todoText.value = ''
-
-})
-
-document.querySelector('#hide-checkbox').addEventListener('change', function (e) {
+// Listen for the Checkbox
+document.querySelector('#filter-todos').addEventListener('change', function (e) {
     filters.hideCompleted = e.target.checked
     renderTodos(todos, filters)
 })
